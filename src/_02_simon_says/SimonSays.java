@@ -57,28 +57,34 @@ if(e.getKeyCode()==imageIndex&&simonSays==true){
 
 		// 18. Use the speak method to tell the user they were correct
 speak("You were correct");
+
 	}
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..."
 else {
 	speak("Simon didn't say that");
-}
+	System.out.println("here");
 		// 20. Increase the value of score
 
 		// 21. Use the speak method to tell the user they were correct
 
 		// 22. Increment tries by 1
-
+tries+=1;
+System.out.println(tries);
 		// 25. If tries is greater than 9 (or however many you want)...
-
+if(tries>9) {
+	
 		// 26. Tell the user their score
-
+speak("Your score  is " + points);
 		// 27. Exit the program
-
+System.exit(0);
+}
+}
 		// 23. Dispose of the frame
-
+frame.dispose();
 		// 24. Call the showImage method to show a new image
-	}
+showImage();
+}
 
 	private void showImage() {
 		// 5. Initialize your frame to a new JFrame()
@@ -102,7 +108,6 @@ Random rand = new Random();
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
 int num = rand.nextInt(4)+1;
-System.out.println(num);
 if(num == 1) {
 	speak("Simon says press the up key.");
 }
