@@ -114,9 +114,10 @@ buttonCount+=1;
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
-
+if(buttonPressed == firstButton) {
 			// Call the askQuestion() method
- 
+	askQuestion("What is the biggest country?", "Russia", 200);
+}
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
 		// If the buttonPressed was the secondButton
