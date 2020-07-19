@@ -15,6 +15,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.net.URL;
 
 
@@ -34,7 +35,7 @@ import javax.swing.JPanel;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -80,6 +81,17 @@ quizPanel.add(secondButton);
 		// 12. Write the code to complete the actionPerformed() method below
 
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
+		thirdButton = createButton("600");
+		thirdButton.addActionListener(this);
+		quizPanel.add(thirdButton);
+		
+		fourthButton = createButton("800");
+		fourthButton.addActionListener(this);
+		quizPanel.add(fourthButton);
+		
+		fifthButton = createButton("1000");
+		fifthButton.addActionListener(this);
+		quizPanel.add(fifthButton);
 		
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
@@ -110,46 +122,70 @@ buttonCount+=1;
 	public void actionPerformed(ActionEvent e) {
 		
 		// Remove this temporary message after testing:
-		JOptionPane.showMessageDialog(null, "pressed " + ((JButton) e.getSource()).getText() + " button");
-
+		
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
 if(buttonPressed == firstButton) {
+
+	askQuestion("What are you?", "A human", 200);
+	firstButton.setText("");
+}
+
 			// Call the askQuestion() method
 	askQuestion("What is the biggest country?", "Russia", 200);
 }
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
 		// If the buttonPressed was the secondButton
-
+if(buttonPressed == secondButton) {
+	askQuestion("What is this class for?", "Coding", 400);
+	secondButton.setText("");
+}
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
 
+if(buttonPressed == thirdButton) {
+	askQuestion("What is the meaning of life?", "42", 600);
+	thirdButton.setText("");
+}
+if(buttonPressed == fourthButton) {
+	askQuestion("Where is the driest place on Earth?", "Chile", 800);
+	fourthButton.setText("");
+}
+if(buttonPressed == fifthButton) {
+	askQuestion("What is the average color of the universe?", "Cosmic Latte", 1000);
+	fifthButton.setText("");
+}
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
-		
+		playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
+		String answer = JOptionPane.showInputDialog(question);
 		
 		// Stop the theme music when they have entered their response. Hint: use the sound variable 
-		
+		sound.stop();
 		// If the answer is correct
-
+if(answer.equalsIgnoreCase(correctAnswer)) {
 			// Increase the score by the prizeMoney
-
+score+=prizeMoney;
 			// Pop up a message to tell the user they were correct
-
+JOptionPane.showMessageDialog(null, "Thou wast correct");
+}
 		// Otherwise
-
+else {
 			// Decrement the score by the prizeMoney
-
+score-=prizeMoney;
 			// Pop up a message to tell the user they were wrong and give them the correct answer
+JOptionPane.showMessageDialog(null, "You loser, you were wrong! The correct answer is '" + correctAnswer + "'.");
 
+}
 		// Call the updateScore() method
+updateScore();
+
 
 	}
 
@@ -200,5 +236,14 @@ if(buttonPressed == firstButton) {
 		frame.add(image);
 		frame.setVisible(true);
 		frame.pack();
+	}
+	
+	void playVideo(String videoID) {
+	    try {
+	         URI uri = new URI(videoID);
+	         java.awt.Desktop.getDesktop().browse(uri);
+	    } catch (Exception e) {
+	         e.printStackTrace();
+	    }
 	}
 }

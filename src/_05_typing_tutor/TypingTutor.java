@@ -1,5 +1,6 @@
 package _05_typing_tutor;
 
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -58,4 +59,5 @@ public void keyReleased(KeyEvent e) {
 	Label.setFont(Label.getFont().deriveFont(200.0f));
 	Label.setHorizontalAlignment(JLabel.CENTER);
 }
+
 }
