@@ -20,8 +20,6 @@ public void run() {
 	panel.add(button);
 	button.setText("Translate");
 	panel.add(label);
-	label.setText(" ");
 	frame.pack();
 	frame.setVisible(true);
-}
 }
